@@ -1,0 +1,87 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Header.master.cs" Inherits="Party_Project_ASP_ADO.Header" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .centerEle {
+            text-align: center;
+        }
+
+        .auto-style1 {
+            width: 57%;
+        }
+
+        .auto-style2 {
+            width: 180px;
+            height: 23px;
+        }
+
+        .auto-style3 {
+            width: 75px;
+            height: 23px;
+        }
+
+        .auto-style4 {
+            height: 23px;
+        }
+
+        .auto-style5 {
+            height: 23px;
+            width: 96px;
+        }
+
+        .auto-style7 {
+            width: 119px;
+            height: 23px;
+        }
+
+        .auto-style8 {
+            width: 101px;
+            height: 23px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style2" style="color: #000000"><strong>INVOICE PRODUCT</strong></td>
+                <td class="auto-style3" style="color: #000000">
+                    <a href="PartyList.aspx">Party</a>
+                </td>
+                <td class="auto-style5" style="color: #000000">
+                    <a href="ProductsList.aspx">Products</a>
+                </td>
+                <td class="auto-style8" style="color: #000000">
+                    <a href="Assign_PartyList.aspx">Assign Party</a>
+                </td>
+                <td class="auto-style7" style="color: #000000">
+                    <a href="Product_Rate.aspx">Product_Rate</a>
+                </td>
+                <td class="auto-style4" style="color: #000000">
+                    <a href="Invoice.aspx">Invoice</a>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:Label ID="Label1" runat="server" Text="SorryThis page is not available!!"></asp:Label>
+        </asp:ContentPlaceHolder>
+    </form>
+    <p>
+        &nbsp;
+    </p>
+    <p>
+        &nbsp;
+    </p>
+</body>
+</html>

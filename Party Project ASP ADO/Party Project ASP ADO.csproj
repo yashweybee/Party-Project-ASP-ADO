@@ -67,12 +67,84 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assign_Party.aspx" />
+    <Content Include="Assign_PartyList.aspx" />
+    <Content Include="Invoice.aspx" />
+    <Content Include="Party.aspx" />
+    <Content Include="PartyList.aspx" />
+    <Content Include="Products.aspx" />
+    <Content Include="ProductsList.aspx" />
+    <Content Include="Product_Rate.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assign_Party.aspx.cs">
+      <DependentUpon>Assign_Party.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assign_Party.aspx.designer.cs">
+      <DependentUpon>Assign_Party.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assign_PartyList.aspx.cs">
+      <DependentUpon>Assign_PartyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assign_PartyList.aspx.designer.cs">
+      <DependentUpon>Assign_PartyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Header.Master.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header.Master.designer.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Party.aspx.cs">
+      <DependentUpon>Party.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Party.aspx.designer.cs">
+      <DependentUpon>Party.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PartyList.aspx.cs">
+      <DependentUpon>PartyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PartyList.aspx.designer.cs">
+      <DependentUpon>PartyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsList.aspx.cs">
+      <DependentUpon>ProductsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductsList.aspx.designer.cs">
+      <DependentUpon>ProductsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Rate.aspx.cs">
+      <DependentUpon>Product_Rate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product_Rate.aspx.designer.cs">
+      <DependentUpon>Product_Rate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Header.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
