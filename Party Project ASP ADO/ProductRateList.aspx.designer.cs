@@ -11,17 +11,17 @@ namespace Party_Project_ASP_ADO
 {
 
 
-    public partial class Assign_PartyList
+    public partial class ProductRateList
     {
 
         /// <summary>
-        /// btnAssignParty control.
+        /// btnAddProductRate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAssignParty;
+        protected global::System.Web.UI.WebControls.Button btnAddProductRate;
 
         /// <summary>
         /// GridView2 control.
@@ -33,12 +33,12 @@ namespace Party_Project_ASP_ADO
         protected global::System.Web.UI.WebControls.GridView GridView2;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

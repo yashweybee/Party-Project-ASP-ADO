@@ -65,7 +65,7 @@
                     <a href="Assign_PartyList.aspx">Assign Party</a>
                 </td>
                 <td class="auto-style7" style="color: #000000">
-                    <a href="Product_Rate.aspx">Product_Rate</a>
+                    <a href="ProductRateList.aspx">Product Rate</a>
                 </td>
                 <td class="auto-style4" style="color: #000000">
                     <a href="Invoice.aspx">Invoice</a>

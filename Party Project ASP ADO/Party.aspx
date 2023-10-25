@@ -84,14 +84,14 @@
         }
 
         .auto-style16 {
-            width: 461px;
-            height: 30px;
-        }
+        width: 461px;
+        height: 30px;
+    }
 
         .auto-style17 {
-            width: 234px;
-            height: 30px;
-        }
+        width: 234px;
+        height: 30px;
+    }
 
         .auto-style18 {
             height: 30px;

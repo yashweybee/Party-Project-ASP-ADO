@@ -72,6 +72,7 @@
     <Content Include="Invoice.aspx" />
     <Content Include="Party.aspx" />
     <Content Include="PartyList.aspx" />
+    <Content Include="ProductRateList.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="ProductsList.aspx" />
     <Content Include="Product_Rate.aspx" />
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="PartyList.aspx.designer.cs">
       <DependentUpon>PartyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductRateList.aspx.cs">
+      <DependentUpon>ProductRateList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductRateList.aspx.designer.cs">
+      <DependentUpon>ProductRateList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>

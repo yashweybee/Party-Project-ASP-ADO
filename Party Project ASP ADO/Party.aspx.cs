@@ -25,6 +25,7 @@ namespace Party_Project_ASP_ADO
                 SqlCommand cmd = new SqlCommand(insertQuery, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                lblDataStatus.Visible = true;
             }
             catch (Exception ex)
             {
@@ -33,7 +34,6 @@ namespace Party_Project_ASP_ADO
             finally
             {
                 conn.Close();
-                lblDataStatus.Visible = true;
                 Response.Redirect("PartyList.aspx");
             }
 
