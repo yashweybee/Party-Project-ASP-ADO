@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Party List" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="PartyList.aspx.cs" Inherits="Party_Project_ASP_ADO.PartyList" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:Button ID="btnAddParty" runat="server" Text="Add Party" />
+    <asp:Button ID="btnAddParty" runat="server" Text="Add Party" OnClick="btnAddParty_Click" />
     <br />
     <br />
     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">

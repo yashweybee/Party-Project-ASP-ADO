@@ -13,5 +13,10 @@ namespace Party_Project_ASP_ADO
         {
 
         }
+
+        protected void btnAddParty_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Party.aspx");
+        }
     }
 }
