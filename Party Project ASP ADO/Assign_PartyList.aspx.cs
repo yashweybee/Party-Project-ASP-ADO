@@ -37,7 +37,7 @@ namespace Party_Project_ASP_ADO
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            SqlDataSource1.UpdateParameters["PartyName"].DefaultValue = ;
+            //SqlDataSource1.UpdateParameters["PartyName"].DefaultValue = ;
 
 
 
