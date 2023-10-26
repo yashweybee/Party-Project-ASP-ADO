@@ -18,5 +18,10 @@ namespace Party_Project_ASP_ADO
         {
             Response.Redirect("Assign_Party.aspx");
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

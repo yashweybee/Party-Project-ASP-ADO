@@ -41,7 +41,7 @@ namespace Party_Project_ASP_ADO
 
         protected void btnCancle_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Assign_Party.aspx");
+            Response.Redirect("Assign_PartyList.aspx");
         }
     }
 }

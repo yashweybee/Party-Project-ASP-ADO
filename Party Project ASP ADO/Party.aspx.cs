@@ -17,24 +17,33 @@ namespace Party_Project_ASP_ADO
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string partyName = txtBoxPartyName.Text;
-            try
+            string partyName;
+            if (txtBoxPartyName.Text.Trim() == string.Empty)
             {
-
-                string insertQuery = "insert into Party values " + "('" + partyName + "')";
-                SqlCommand cmd = new SqlCommand(insertQuery, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                lblDataStatus.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Party Name')", true);
                 Response.Redirect("PartyList.aspx");
+            }
+            else
+            {
+                partyName = txtBoxPartyName.Text;
+
+                try
+                {
+                    string insertQuery = "insert into Party values " + "('" + partyName + "')";
+                    SqlCommand cmd = new SqlCommand(insertQuery, conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    lblDataStatus.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                    Response.Redirect("PartyList.aspx");
+                }
             }
 
         }
