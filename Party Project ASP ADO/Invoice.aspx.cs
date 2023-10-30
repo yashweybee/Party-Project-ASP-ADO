@@ -17,6 +17,7 @@ namespace Party_Project_ASP_ADO
         public DataTable invoiceTableStructure = null;
         int counter;
         int noOfRowEffected;
+        int grandTotal;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -102,38 +103,57 @@ namespace Party_Project_ASP_ADO
             }
             finally { conn.Close(); }
         }
+        public void setGrandTotal(int total)
+        {
+            if (ViewState["Gt"] != null)
+            {
+                grandTotal = Convert.ToInt32(ViewState["Gt"]);
+            }
+            else
+            {
+                grandTotal = 0;
+            }
+            grandTotal = grandTotal + total;
+            ViewState["Gt"] = grandTotal;
+
+            lblGrandTotal.Text = grandTotal.ToString();
+        }
+
+        public void setCounter(int num)
+        {
+            if (ViewState["Count"] != null)
+            {
+                counter = Convert.ToInt32(ViewState["Count"]);
+            }
+            else
+            {
+                counter = 0;
+            }
+            counter = counter + num;
+            ViewState["Count"] = counter;
+        }
 
         protected void btnAddInvoice_Click(object sender, EventArgs e)
         {
             //string productRate = (string.IsNullOrEmpty(txtBoxRate.Text.Trim()) && int.Parse(txtBoxRate.Text.Trim()) > 0) ? txtBoxRate.Text.Trim() : "0";
             //string productQuantity = (string.IsNullOrEmpty(txtBoxQuantity.Text.Trim()) && int.Parse(txtBoxQuantity.Text.Trim()) > 0) ? txtBoxQuantity.Text.Trim() : "0";
-
-
-            string productName = ddProducts.Text;
-            string partyName = ddParty.Text;
-            string productRate = txtBoxRate.Text.Trim();
-            string productQuantity = txtBoxQuantity.Text.Trim();
-            int total = int.Parse(productRate) * int.Parse(productQuantity);
-
-
             try
             {
+                string productName = ddProducts.Text;
+                string partyName = ddParty.Text;
+                string productRate = txtBoxRate.Text.Trim();
+                string productQuantity = txtBoxQuantity.Text.Trim();
+                int total = int.Parse(productRate) * int.Parse(productQuantity);
+                setGrandTotal(total);
+
+
                 string insertQuery = "insert into invoice values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "')," + int.Parse(productRate) + ", " + int.Parse(productQuantity) + ", " + total + " )";
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(insertQuery, conn);
                 conn.Open();
                 noOfRowEffected = cm.ExecuteNonQuery();
 
-                if (ViewState["Count"] != null)
-                {
-                    counter = Convert.ToInt32(ViewState["Count"]);
-                }
-                else
-                {
-                    counter = 0;
-                }
-                counter = counter + noOfRowEffected;
-                ViewState["Count"] = counter;
+                setCounter(noOfRowEffected);
 
                 lblDataStatus.Visible = true;
             }
@@ -144,7 +164,7 @@ namespace Party_Project_ASP_ADO
             finally { conn.Close(); }
 
             showInvoiceTable();
-            setGrandTotal();
+
             resetPage();
         }
         public void showInvoiceTable()
@@ -168,28 +188,7 @@ namespace Party_Project_ASP_ADO
             }
             finally { conn.Close(); }
         }
-        public void setGrandTotal()
-        {
-            try
-            {
-                string selectQuery = "select sum(Total) from invoice";
-                conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
-                SqlCommand cm = new SqlCommand(selectQuery, conn);
-                conn.Open();
-                cm.ExecuteNonQuery();
-                int total = (int)cm.ExecuteScalar();
-                lblGrandTotal.Text = total.ToString();
 
-                lblDataStatus.Visible = true;
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.ToString());
-
-            }
-            finally { conn.Close(); }
-        }
 
         protected void ddParty_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -204,37 +203,25 @@ namespace Party_Project_ASP_ADO
 
         protected void close_Invoice_Click(object sender, EventArgs e)
         {
-            clearInvoiceTable();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Invoice is cleared!!')", true);
-            showInvoiceTable();
+            resetGrid();
             resetPage();
+            setGrandTotal(0);
+            setCounter(0);
+            ddParty.Enabled = true;
+            lblGrandTotal.Text = " ";
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Invoice is cleared!!')", true);
         }
-        public void clearInvoiceTable()
-        {
-            try
-            {
-                string insertQuery = "delete from Invoice";
-                conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
-                SqlCommand cm = new SqlCommand(insertQuery, conn);
-                conn.Open();
-                cm.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.ToString());
 
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-        }
         public void resetPage()
         {
             txtBoxRate.Text = "";
             txtBoxQuantity.Text = "";
             lblDataStatus.Visible = false;
+        }
+        public void resetGrid()
+        {
+            GridView_Invoice.DataSource = null;
+            GridView_Invoice.DataBind();
 
         }
     }
