@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" Title="Invoice" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="Party_Project_ASP_ADO.Invoice" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <table class="auto-style9" style="vertical-align: middle; text-align: center">
+    <table class="auto-style20" style="vertical-align: middle; text-align: center">
         <tr>
             <td class="auto-style14">
                 <strong>
@@ -35,7 +35,7 @@
             <td class="auto-style17" style="text-align: left; vertical-align: middle">Product Name :</td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
 
-                <asp:DropDownList ID="ddProducts" runat="server" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged">
+                <asp:DropDownList ID="ddProducts" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -69,11 +69,32 @@
     </table>
 
     <br />
-    <asp:GridView ID="GridView_Invoice" runat="server"></asp:GridView>
+    <asp:GridView ID="GridView_Invoice" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <AlternatingRowStyle BackColor="White" />
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        <%--<Columns>
+            <asp:BoundField DataField="Party" HeaderText="Party" />
+            <asp:BoundField DataField="Party" HeaderText="Party" />
+            <asp:BoundField DataField="Product" HeaderText="Product" />
+            <asp:BoundField DataField="Rate" HeaderText="Rate" />
+            <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+            <asp:BoundField DataField="Total" HeaderText="Total" />
+        </Columns>--%>
+    </asp:GridView>
 
     <%--<asp:Panel>--%>
     <asp:Label runat="server" Text="Grand Total"></asp:Label>
     <asp:Label runat="server" Text="" ID="lblGrandTotal"></asp:Label>
+    <asp:Button ID="close_Invoice" runat="server" Text="Close Invoice" Width="100px" OnClick="close_Invoice_Click" />
     <%--</asp:Panel>--%>
 </asp:Content>
 
@@ -111,6 +132,10 @@
         .auto-style19 {
             width: 100%;
             margin-top: 0px;
+        }
+        .auto-style20 {
+            width: 1513px;
+            height: 23px;
         }
     </style>
 </asp:Content>

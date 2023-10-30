@@ -4,7 +4,7 @@
     <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="Pr_Id" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="Pr_Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="Pr_Id" HeaderText="Pr_Id" InsertVisible="False" ReadOnly="True" SortExpression="Pr_Id" />

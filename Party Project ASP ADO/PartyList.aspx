@@ -4,12 +4,12 @@
     <asp:Button ID="btnAddParty" runat="server" Text="Add Party" OnClick="btnAddParty_Click" />
     <br />
     <br />
-    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="P_Id" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="P_Id" OnRowDeleting="GridView2_RowDeleting" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="P_Id" HeaderText="P_Id" InsertVisible="False" ReadOnly="True" SortExpression="P_Id" />
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-            <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:CommandField ShowDeleteButton="true" ShowEditButton="True" ButtonType="Button" />
         </Columns>
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

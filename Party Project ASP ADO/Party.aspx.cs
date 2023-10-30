@@ -17,16 +17,13 @@ namespace Party_Project_ASP_ADO
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string partyName;
-            if (txtBoxPartyName.Text.Trim() == string.Empty)
+            string partyName = txtBoxPartyName.Text.Trim();
+            if (string.IsNullOrEmpty(partyName))
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Party Name')", true);
-                Response.Redirect("PartyList.aspx");
             }
             else
             {
-                partyName = txtBoxPartyName.Text;
-
                 try
                 {
                     string insertQuery = "insert into Party values " + "('" + partyName + "')";
@@ -42,15 +39,13 @@ namespace Party_Project_ASP_ADO
                 finally
                 {
                     conn.Close();
-                    Response.Redirect("PartyList.aspx");
                 }
             }
-
         }
 
         protected void btnCancle_Click(object sender, EventArgs e)
         {
-            txtBoxPartyName.Text = "";
+            Response.Redirect("PartyList.aspx");
         }
     }
 }

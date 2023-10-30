@@ -18,5 +18,10 @@ namespace Party_Project_ASP_ADO
         {
             Response.Redirect("Party.aspx");
         }
+
+        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Party is Deleted')", true);
+        }
     }
 }

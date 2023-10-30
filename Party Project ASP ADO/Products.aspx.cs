@@ -18,30 +18,36 @@ namespace Party_Project_ASP_ADO
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string productName = txtBoxProductName.Text;
-            try
+            string productName = txtBoxProductName.Text.Trim();
+            if (string.IsNullOrEmpty(productName))
             {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Product Name!!')", true);
+            }
+            else
+            {
+                try
+                {
+                    string insertQuery = "insert into Product values " + "('" + productName + "')";
+                    SqlCommand cmd = new SqlCommand(insertQuery, conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    lblDataStatus.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    Response.Write(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
 
-                string insertQuery = "insert into Product values " + "('" + productName + "')";
-                SqlCommand cmd = new SqlCommand(insertQuery, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                lblDataStatus.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-                Response.Redirect("ProductsList.aspx");
+                }
             }
         }
 
         protected void btnCancle_Click(object sender, EventArgs e)
         {
-            txtBoxProductName.Text = "";
+            Response.Redirect("ProductsList.aspx");
         }
     }
 }

@@ -37,6 +37,7 @@
             </td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
                 <asp:TextBox ID="txtBoxPartyName" runat="server" Width="160px"></asp:TextBox>
+
             </td>
         </tr>
         <tr>
@@ -49,8 +50,8 @@
             <td class="auto-style17" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="60px" />
-&nbsp;
-                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" Width="60px" />
+                &nbsp;
+                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" Width="60px"  />
             </td>
         </tr>
         <tr>
@@ -84,14 +85,14 @@
         }
 
         .auto-style16 {
-        width: 461px;
-        height: 30px;
-    }
+            width: 461px;
+            height: 30px;
+        }
 
         .auto-style17 {
-        width: 234px;
-        height: 30px;
-    }
+            width: 234px;
+            height: 30px;
+        }
 
         .auto-style18 {
             height: 30px;

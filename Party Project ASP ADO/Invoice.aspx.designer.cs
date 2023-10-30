@@ -103,5 +103,14 @@ namespace Party_Project_ASP_ADO
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGrandTotal;
+
+        /// <summary>
+        /// close_Invoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button close_Invoice;
     }
 }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Assign_Party.aspx" />
     <Content Include="Assign_PartyList.aspx" />
+    <Content Include="History.aspx" />
     <Content Include="Invoice.aspx" />
     <Content Include="Party.aspx" />
     <Content Include="PartyList.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="Header.Master.designer.cs">
       <DependentUpon>Header.Master</DependentUpon>
+    </Compile>
+    <Compile Include="History.aspx.cs">
+      <DependentUpon>History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="History.aspx.designer.cs">
+      <DependentUpon>History.aspx</DependentUpon>
     </Compile>
     <Compile Include="Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>

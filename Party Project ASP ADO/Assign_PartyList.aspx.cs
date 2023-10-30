@@ -24,23 +24,19 @@ namespace Party_Project_ASP_ADO
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            string PName = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddParty"))).SelectedValue;
+            string PRName = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddProducts"))).SelectedValue;
 
 
-            string ddl = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddParty")).SelectedValue;
-            string ddl2 = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddProducts")).SelectedValue;
-
-            SqlDataSource1.UpdateParameters["PartyName"].DefaultValue = ddl;
-            SqlDataSource1.UpdateParameters["ProductName"].DefaultValue = ddl2;
-
-
+            SqlDataSource1.UpdateParameters["partyName"].DefaultValue = PName;
+            SqlDataSource1.UpdateParameters["productName"].DefaultValue = PRName;
         }
 
-        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //SqlDataSource1.UpdateParameters["PartyName"].DefaultValue = ;
-
-
-
+            string AsId = GridView1.DataKeys[e.RowIndex].Value.ToString();
+            SqlDataSource1.DeleteParameters["As_Id"].DefaultValue = AsId;
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Assigned Party deleted!!')", true);
         }
     }
 }

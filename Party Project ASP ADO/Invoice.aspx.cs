@@ -3,46 +3,57 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Party_Project_ASP_ADO
 {
+
     public partial class Invoice : System.Web.UI.Page
     {
         SqlConnection conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
+        public DataTable invoiceTableStructure = null;
+        int counter;
+        int noOfRowEffected;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //showTableData();
             if (!IsPostBack)
             {
-                try
-                {
-                    string selectQuery = "select distinct p.Name from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id";
-                    SqlCommand cm = new SqlCommand(selectQuery, conn);
-                    conn.Open();
-                    SqlDataAdapter ad = new SqlDataAdapter(cm);
-                    DataTable dataTable = new DataTable();
-                    ad.Fill(dataTable);
-                    ddParty.DataSource = dataTable;
-                    ddParty.DataTextField = "Name";
-                    ddParty.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    Response.Write(ex.ToString());
-
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                //clearInvoiceTable();
+                setPartyDropDown();
             }
         }
-        protected void Page_PageUn(object sender, EventArgs e)
-        {
 
+        public void setPartyDropDown()
+        {
+            try
+            {
+                ddProducts.Enabled = false;
+                string selectQuery = "select distinct p.Name from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id";
+                SqlCommand cm = new SqlCommand(selectQuery, conn);
+                conn.Open();
+                SqlDataAdapter ad = new SqlDataAdapter(cm);
+                DataTable dataTable = new DataTable();
+                ad.Fill(dataTable);
+                ddParty.DataSource = dataTable;
+                ddParty.DataTextField = "Name";
+                ddParty.DataBind();
+                ddParty.Items.Insert(0, "Select Party");
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+
+            }
+            finally
+            {
+                conn.Close();
+
+                ddProducts.Enabled = true;
+            }
         }
         public void setRateTxtBox()
         {
@@ -53,14 +64,11 @@ namespace Party_Project_ASP_ADO
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(selectQuery, conn);
                 conn.Open();
-                //SqlDataReader dr = cm.ExecuteReader();
                 SqlDataReader rd = cm.ExecuteReader();
                 while (rd.Read())
                 {
-                    txtBoxRate.Text = (string)rd["Rate"];
+                    txtBoxRate.Text = rd.GetValue(0).ToString();
                 }
-                //Response.Write("aaaaaaaaaaaaaaaaaaa");
-                //lblDataStatus.Visible = true;
 
             }
             catch (Exception ex)
@@ -71,7 +79,7 @@ namespace Party_Project_ASP_ADO
             finally { conn.Close(); }
         }
 
-        public void setDropDown(string partyName)
+        public void setProductsDropDown(string partyName)
         {
             try
             {
@@ -85,6 +93,7 @@ namespace Party_Project_ASP_ADO
                 ddProducts.DataSource = dataTable;
                 ddProducts.DataTextField = "Name";
                 ddProducts.DataBind();
+                ddProducts.Items.Insert(0, "Select Product");
             }
             catch (Exception ex)
             {
@@ -96,33 +105,68 @@ namespace Party_Project_ASP_ADO
 
         protected void btnAddInvoice_Click(object sender, EventArgs e)
         {
-            //string productName = ddProducts.Text;
-            //string partyName = ddParty.Text;
-            //string productRate = txtBoxRate.Text;
-            //string productQuantity = txtBoxQuantity.Text;
-            //int total = int.Parse(productRate) * int.Parse(productQuantity);
+            //string productRate = (string.IsNullOrEmpty(txtBoxRate.Text.Trim()) && int.Parse(txtBoxRate.Text.Trim()) > 0) ? txtBoxRate.Text.Trim() : "0";
+            //string productQuantity = (string.IsNullOrEmpty(txtBoxQuantity.Text.Trim()) && int.Parse(txtBoxQuantity.Text.Trim()) > 0) ? txtBoxQuantity.Text.Trim() : "0";
 
-            //try
-            //{
-            //    string insertQuery = "insert into invoice values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "')," + int.Parse(productRate) + ", " + int.Parse(productQuantity) + ", " + total + " )";
-            //    conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
-            //    SqlCommand cm = new SqlCommand(insertQuery, conn);
-            //    conn.Open();
-            //    cm.ExecuteNonQuery();
-            //    lblDataStatus.Visible = true;
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write(ex.ToString());
+            string productName = ddProducts.Text;
+            string partyName = ddParty.Text;
+            string productRate = txtBoxRate.Text.Trim();
+            string productQuantity = txtBoxQuantity.Text.Trim();
+            int total = int.Parse(productRate) * int.Parse(productQuantity);
 
-            //}
-            //finally { conn.Close(); }
 
-            showTableData();
+            try
+            {
+                string insertQuery = "insert into invoice values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "')," + int.Parse(productRate) + ", " + int.Parse(productQuantity) + ", " + total + " )";
+                conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
+                SqlCommand cm = new SqlCommand(insertQuery, conn);
+                conn.Open();
+                noOfRowEffected = cm.ExecuteNonQuery();
+
+                if (ViewState["Count"] != null)
+                {
+                    counter = Convert.ToInt32(ViewState["Count"]);
+                }
+                else
+                {
+                    counter = 0;
+                }
+                counter = counter + noOfRowEffected;
+                ViewState["Count"] = counter;
+
+                lblDataStatus.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Valid Values!!')", true);
+            }
+            finally { conn.Close(); }
+
+            showInvoiceTable();
             setGrandTotal();
+            resetPage();
+        }
+        public void showInvoiceTable()
+        {
+            try
+            {
+                string selectQuery = "select top " + counter + " i.Invoice_Id, p.Name [Party], pr.Name [Product], i.Rate, i.Quantity, i.Total from invoice i Left join Party p on p.P_Id = i.P_Id Left join Product pr on pr.Pr_Id = i.Pr_Id order by i.Invoice_Id desc";
+                conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
+                SqlCommand cm = new SqlCommand(selectQuery, conn);
+                conn.Open();
+                SqlDataAdapter ad = new SqlDataAdapter(cm);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                GridView_Invoice.DataSource = dt;
+                GridView_Invoice.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
 
-
+            }
+            finally { conn.Close(); }
         }
         public void setGrandTotal()
         {
@@ -146,27 +190,52 @@ namespace Party_Project_ASP_ADO
             }
             finally { conn.Close(); }
         }
-        public void showTableData()
-        {
-            GridView_Invoice.AutoGenerateColumns = false;
-            BoundField bf = new BoundField();
-            bf.DataField = "Party";
-            bf.DataField = "Product";
-            bf.DataField = "Rate";
-            bf.DataField = "Quantity";
-            bf.DataField = "Total";
-            GridView_Invoice.Columns.Add(bf);
-
-        }
 
         protected void ddParty_SelectedIndexChanged(object sender, EventArgs e)
         {
-            setDropDown(ddParty.Text);
+            setProductsDropDown(ddParty.SelectedValue);
+            ddParty.Enabled = false;
         }
 
         protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
             setRateTxtBox();
+        }
+
+        protected void close_Invoice_Click(object sender, EventArgs e)
+        {
+            clearInvoiceTable();
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Invoice is cleared!!')", true);
+            showInvoiceTable();
+            resetPage();
+        }
+        public void clearInvoiceTable()
+        {
+            try
+            {
+                string insertQuery = "delete from Invoice";
+                conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
+                SqlCommand cm = new SqlCommand(insertQuery, conn);
+                conn.Open();
+                cm.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+        public void resetPage()
+        {
+            txtBoxRate.Text = "";
+            txtBoxQuantity.Text = "";
+            lblDataStatus.Visible = false;
+
         }
     }
 }

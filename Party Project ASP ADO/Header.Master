@@ -48,6 +48,15 @@
         a {
             text-decoration: none;
         }
+
+        .auto-style9 {
+            height: 23px;
+            width: 90px;
+        }
+
+        .auto-style10 {
+            color: #000000;
+        }
     </style>
 </head>
 <body>
@@ -67,8 +76,11 @@
                 <td class="auto-style7" style="color: #000000">
                     <a href="ProductRateList.aspx">Product Rate</a>
                 </td>
-                <td class="auto-style4" style="color: #000000">
+                <td class="auto-style9" style="color: #000000">
                     <a href="Invoice.aspx">Invoice</a>
+                </td>
+                <td class="auto-style4" style="color: #000000">
+                    <a href="History.aspx"><span class="auto-style10">History</span></a>
                 </td>
             </tr>
         </table>

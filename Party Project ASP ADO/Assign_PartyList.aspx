@@ -4,7 +4,7 @@
     <asp:Button ID="btnAssignParty" runat="server" OnClick="btnAssignParty_Click" Text="Assign Party" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="As_Id">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:TemplateField HeaderText="Name" SortExpression="Name">
@@ -40,16 +40,15 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT p.Name, pr.Name AS Expr1 FROM Assign_Party AS ap LEFT OUTER JOIN Party AS p ON p.P_Id = ap.P_Id LEFT OUTER JOIN Product AS pr ON pr.Pr_Id = ap.Pr_Id" UpdateCommand="update Assign_Party set P_Id = (select P_Id from Party where Name = @partyName), Pr_Id = (select Pr_Id from Product where Name = @productName)    where P_Id = @original_P_Id AND Pr_Id = @original_Pr_Id">
-
-
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT p.Name, pr.Name AS Expr1, As_Id FROM Assign_Party AS ap LEFT OUTER JOIN Party AS p ON p.P_Id = ap.P_Id LEFT OUTER JOIN Product AS pr ON pr.Pr_Id = ap.Pr_Id" UpdateCommand="update Assign_Party set P_Id = (select P_Id from Party where Name = @partyName), Pr_Id = (select Pr_Id from Product where Name = @productName) where As_Id = @As_Id" DeleteCommand="delete Assign_Party where As_Id = @As_Id">
 
         <UpdateParameters>
             <asp:Parameter Name="partyName" Type="String"></asp:Parameter>
             <asp:Parameter Name="productName" Type="String"></asp:Parameter>
-            <asp:Parameter Name="original_P_Id" Type="Int32" />
-            <asp:Parameter Name="original_Pr_Id" Type="Int32" />
         </UpdateParameters>
+        <DeleteParameters>
+            <asp:Parameter Name="As_Id" Type="String"></asp:Parameter>
+        </DeleteParameters>
     </asp:SqlDataSource>
     <br />
 

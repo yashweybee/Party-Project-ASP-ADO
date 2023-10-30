@@ -18,5 +18,10 @@ namespace Party_Project_ASP_ADO
         {
             Response.Redirect("Products.aspx");
         }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Product is Deleted')", true);
+        }
     }
 }

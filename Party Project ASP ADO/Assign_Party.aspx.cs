@@ -31,7 +31,7 @@ namespace Party_Project_ASP_ADO
             }
             catch (Exception ex)
             {
-                Response.Write(ex.Message);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ERROR!!!')", true);
             }
             finally
             {
