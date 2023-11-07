@@ -142,6 +142,10 @@ namespace Party_Project_ASP_ADO
                 string productName = ddProducts.Text;
                 string partyName = ddParty.Text;
                 string productRate = txtBoxRate.Text.Trim();
+                if (string.IsNullOrEmpty(productRate) || int.Parse(productRate) < 0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Valid Rate Value!!')", true);
+                }
                 string productQuantity = txtBoxQuantity.Text.Trim();
                 int total = int.Parse(productRate) * int.Parse(productQuantity);
                 setGrandTotal(total);
