@@ -59,9 +59,12 @@ namespace Party_Project_ASP_ADO
         public void setRateTxtBox()
         {
             string productName = ddProducts.Text;
+
             try
             {
                 string selectQuery = "select Top 1 pr.Rate from Product_Rate pr left join Product p on p.Pr_Id = pr.Pr_Id where p.Name = '" + productName + "' ";
+
+
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(selectQuery, conn);
                 conn.Open();
@@ -84,16 +87,29 @@ namespace Party_Project_ASP_ADO
         {
             try
             {
-                string selectQuery = "select pr.Name from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id Left join Product pr on pr.Pr_Id = ap.Pr_Id where p.Name = '" + partyName + "'";
+                string selectQuery = "select pr.Name, pr.Pr_Id from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id Left join Product pr on pr.Pr_Id = ap.Pr_Id where p.Name = '" + partyName + "'";
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(selectQuery, conn);
                 conn.Open();
                 SqlDataAdapter ad = new SqlDataAdapter(cm);
-                DataTable dataTable = new DataTable();
-                ad.Fill(dataTable);
-                ddProducts.DataSource = dataTable;
-                ddProducts.DataTextField = "Name";
+
+
+                //DataTable dataTable = new DataTable();
+                //ad.Fill(dataTable);
+                //ddProducts.DataSource = dataTable;
+                //ddProducts.DataTextField = "Name";
+                //ddProducts.DataBind();
+
+
+
+                DataSet ds = new DataSet();
+                ad.Fill(ds);
+
+                ddProducts.DataTextField = ds.Tables[0].Columns["Pr_Id"].ToString();
+                ddProducts.DataTextField = ds.Tables[0].Columns["Name"].ToString();
+                ddProducts.DataSource = ds.Tables[0];
                 ddProducts.DataBind();
+
                 ddProducts.Items.Insert(0, "Select Product");
             }
             catch (Exception ex)
