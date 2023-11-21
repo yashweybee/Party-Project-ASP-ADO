@@ -20,10 +20,12 @@ namespace Party_Project_ASP_ADO
         protected void btnSave_Click(object sender, EventArgs e)
         {
             string partyName = ddPartyName.Text;
+            int partyId = int.Parse(ddPartyName.SelectedValue);
             string productName = ddProductName.Text;
+            int productId = int.Parse(ddProductName.SelectedValue);
             try
             {
-                string insertQuery = "insert into Assign_Party values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "'));";
+                string insertQuery = "insert into Assign_Party values(" + partyId + "," + productId + ")";
                 SqlCommand cmd = new SqlCommand(insertQuery, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
