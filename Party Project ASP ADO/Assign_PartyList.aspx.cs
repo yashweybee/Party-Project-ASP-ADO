@@ -24,12 +24,12 @@ namespace Party_Project_ASP_ADO
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            string PName = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddParty"))).SelectedValue;
-            string PRName = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddProducts"))).SelectedValue;
+            string PartyId = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddParty"))).SelectedValue;
+            string ProductId = ((DropDownList)(GridView1.Rows[e.RowIndex].Cells[0].FindControl("ddProducts"))).SelectedValue;
 
 
-            SqlDataSource1.UpdateParameters["partyName"].DefaultValue = PName;
-            SqlDataSource1.UpdateParameters["productName"].DefaultValue = PRName;
+            SqlDataSource1.UpdateParameters["partyName"].DefaultValue = PartyId;
+            SqlDataSource1.UpdateParameters["productName"].DefaultValue = ProductId;
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -9,9 +9,9 @@
         <Columns>
             <asp:TemplateField HeaderText="Name" SortExpression="Name">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="ddParty" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Name">
+                    <asp:DropDownList ID="ddParty" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="P_Id">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name] FROM [Party]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name], [P_Id] FROM [Party]"></asp:SqlDataSource>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
@@ -19,9 +19,9 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Products" SortExpression="Expr1">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="ddProducts" runat="server" DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Name">
+                    <asp:DropDownList ID="ddProducts" runat="server" DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="Pr_Id">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name] FROM [Product]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name], [Pr_Id] FROM [Product]"></asp:SqlDataSource>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Expr1") %>'></asp:Label>
@@ -40,7 +40,7 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT p.Name, pr.Name AS Expr1, As_Id FROM Assign_Party AS ap LEFT OUTER JOIN Party AS p ON p.P_Id = ap.P_Id LEFT OUTER JOIN Product AS pr ON pr.Pr_Id = ap.Pr_Id" UpdateCommand="update Assign_Party set P_Id = (select P_Id from Party where Name = @partyName), Pr_Id = (select Pr_Id from Product where Name = @productName) where As_Id = @As_Id" DeleteCommand="delete Assign_Party where As_Id = @As_Id">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT p.Name, pr.Name AS Expr1, As_Id FROM Assign_Party AS ap LEFT OUTER JOIN Party AS p ON p.P_Id = ap.P_Id LEFT OUTER JOIN Product AS pr ON pr.Pr_Id = ap.Pr_Id" UpdateCommand="update Assign_Party set P_Id =  @partyName, Pr_Id =  @productName where As_Id = @As_Id" DeleteCommand="delete Assign_Party where As_Id = @As_Id">
 
         <UpdateParameters>
             <asp:Parameter Name="partyName" Type="String"></asp:Parameter>
