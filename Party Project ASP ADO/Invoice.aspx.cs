@@ -32,7 +32,7 @@ namespace Party_Project_ASP_ADO
             try
             {
                 ddProducts.Enabled = false;
-                string selectQuery = "select distinct p.Name from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id";
+                string selectQuery = "select distinct p.Name, p.P_Id from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id";
                 SqlCommand cm = new SqlCommand(selectQuery, conn);
                 conn.Open();
                 SqlDataAdapter ad = new SqlDataAdapter(cm);
@@ -40,6 +40,7 @@ namespace Party_Project_ASP_ADO
                 ad.Fill(dataTable);
                 ddParty.DataSource = dataTable;
                 ddParty.DataTextField = "Name";
+                ddParty.DataValueField = "P_Id";
                 ddParty.DataBind();
                 ddParty.Items.Insert(0, "Select Party");
 
@@ -59,10 +60,11 @@ namespace Party_Project_ASP_ADO
         public void setRateTxtBox()
         {
             string productName = ddProducts.Text;
+            int productId = int.Parse(ddProducts.SelectedValue);
 
             try
             {
-                string selectQuery = "select Top 1 pr.Rate from Product_Rate pr left join Product p on p.Pr_Id = pr.Pr_Id where p.Name = '" + productName + "' ";
+                string selectQuery = "select Top 1 pr.Rate from Product_Rate pr left join Product p on p.Pr_Id = pr.Pr_Id where p.Pr_Id = " + productId.ToString() + "order by pr.RoD_Id desc";
 
 
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
@@ -94,20 +96,11 @@ namespace Party_Project_ASP_ADO
                 SqlDataAdapter ad = new SqlDataAdapter(cm);
 
 
-                //DataTable dataTable = new DataTable();
-                //ad.Fill(dataTable);
-                //ddProducts.DataSource = dataTable;
-                //ddProducts.DataTextField = "Name";
-                //ddProducts.DataBind();
-
-
-
-                DataSet ds = new DataSet();
-                ad.Fill(ds);
-
-                ddProducts.DataTextField = ds.Tables[0].Columns["Pr_Id"].ToString();
-                ddProducts.DataTextField = ds.Tables[0].Columns["Name"].ToString();
-                ddProducts.DataSource = ds.Tables[0];
+                DataTable dataTable = new DataTable();
+                ad.Fill(dataTable);
+                ddProducts.DataSource = dataTable;
+                ddProducts.DataTextField = "Name";
+                ddProducts.DataValueField = "Pr_Id";
                 ddProducts.DataBind();
 
                 ddProducts.Items.Insert(0, "Select Product");
