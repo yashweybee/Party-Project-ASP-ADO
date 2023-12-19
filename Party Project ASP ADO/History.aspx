@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="History.aspx.cs" Inherits="Party_Project_ASP_ADO.History" Title="History" MasterPageFile="~/Header.Master" %>
 
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Invoice_Id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Invoice_Id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" CssClass="table table-hover text-center">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="Invoice_Id" HeaderText="Invoice_Id" InsertVisible="False" ReadOnly="True" SortExpression="Invoice_Id" />

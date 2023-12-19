@@ -1,10 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="Party.aspx.cs" Inherits="Party_Project_ASP_ADO.Party" %>
 
 
-
-
-
-
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <table class="auto-style9" style="vertical-align: middle; text-align: center">
         <tr>
@@ -32,11 +28,11 @@
         </tr>
         <tr>
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
-            <td class="auto-style17" style="text-align: left; vertical-align: middle">
+            <td class="auto-style17" style="vertical-align: middle">
                 <asp:Label ID="Label3" runat="server" Text="Party Name :"></asp:Label>
             </td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:TextBox ID="txtBoxPartyName" runat="server" Width="160px"></asp:TextBox>
+                <asp:TextBox ID="txtBoxPartyName" runat="server" Width="160px" CssClass="form-control"></asp:TextBox>
 
             </td>
         </tr>
@@ -49,9 +45,9 @@
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style17" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="60px" />
+                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-success" />
                 &nbsp;
-                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" Width="60px"  />
+                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" CssClass="btn btn-danger" />
             </td>
         </tr>
         <tr>

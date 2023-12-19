@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" Title="Product rate list" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="ProductRateList.aspx.cs" Inherits="Party_Project_ASP_ADO.ProductRateList" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:Button ID="btnAddProductRate" runat="server" Text="Add Product Rate" OnClick="btnAddProductRate_Click" />
+    <asp:Button ID="btnAddProductRate" runat="server" Text="Add Product Rate" OnClick="btnAddProductRate_Click" CssClass="btn btn-primary" />
     <br />
     <br />
-    <asp:GridView ID="Product_Rate_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="Product_Rate_Grid_RowDeleting" OnRowUpdating="Product_Rate_Grid_RowUpdating" DataKeyNames="RoD_Id">
+    <asp:GridView ID="Product_Rate_Grid" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="Product_Rate_Grid_RowDeleting" OnRowUpdating="Product_Rate_Grid_RowUpdating" DataKeyNames="RoD_Id" CssClass="table table-hover text-center">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <%--<asp:BoundField DataField="Pr_Id" HeaderText="Pr_Id" SortExpression="Pr_Id" />--%>

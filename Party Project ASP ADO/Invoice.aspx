@@ -26,7 +26,7 @@
                 <asp:Label ID="Label3" runat="server" Text="Party Name :"></asp:Label>
             </td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:DropDownList ID="ddParty" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddParty_SelectedIndexChanged">
+                <asp:DropDownList ID="ddParty" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddParty_SelectedIndexChanged" Width="250px" CssClass="form-control">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -35,7 +35,7 @@
             <td class="auto-style17" style="text-align: left; vertical-align: middle">Product Name :</td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
 
-                <asp:DropDownList ID="ddProducts" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged">
+                <asp:DropDownList ID="ddProducts" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged" Width="250px" CssClass="form-control">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -43,21 +43,21 @@
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style17" style="text-align: left; vertical-align: middle">Current Rate :</td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:TextBox ID="txtBoxRate" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtBoxRate" runat="server" Width="250px" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="auto-style16" style="text-align: left; vertical-align: middle">&nbsp;</td>
             <td class="auto-style17" style="text-align: left; vertical-align: middle">Quantity :</td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:TextBox ID="txtBoxQuantity" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtBoxQuantity" runat="server" Width="250px" CssClass="form-control"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style17" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:Button ID="btnAddInvoice" runat="server" OnClick="btnAddInvoice_Click" Text="Add Invoice" Width="80px" />
+                <asp:Button ID="btnAddInvoice" runat="server" OnClick="btnAddInvoice_Click" Text="Add Invoice" CssClass="btn btn-primary" />
                 &nbsp;
             </td>
         </tr>
@@ -69,7 +69,7 @@
     </table>
 
     <br />
-    <asp:GridView ID="GridView_Invoice" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView_Invoice" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" CssClass="table table-hover text-center">
         <AlternatingRowStyle BackColor="White" />
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -94,7 +94,8 @@
     <%--<asp:Panel>--%>
     <asp:Label runat="server" Text="Grand Total"></asp:Label>
     <asp:Label runat="server" Text="" ID="lblGrandTotal"></asp:Label>
-    <asp:Button ID="close_Invoice" runat="server" Text="Close Invoice" Width="100px" OnClick="close_Invoice_Click" />
+    <br />
+    <asp:Button ID="close_Invoice" runat="server" Text="Close Invoice" OnClick="close_Invoice_Click" CssClass="btn btn-danger" />
     <%--</asp:Panel>--%>
 </asp:Content>
 
@@ -133,6 +134,7 @@
             width: 100%;
             margin-top: 0px;
         }
+
         .auto-style20 {
             width: 1513px;
             height: 23px;

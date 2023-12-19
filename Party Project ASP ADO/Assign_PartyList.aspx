@@ -1,10 +1,12 @@
 ﻿<%@ Page Language="C#" Title="Assign party list" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="Assign_PartyList.aspx.cs" Inherits="Party_Project_ASP_ADO.Assign_PartyList" %>
 
+
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:Button ID="btnAssignParty" runat="server" OnClick="btnAssignParty_Click" Text="Assign Party" />
+    <asp:Button ID="btnAssignParty" runat="server" OnClick="btnAssignParty_Click" Text="Assign Party" CssClass="btn btn-primary" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="As_Id">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="As_Id" CssClass="table table-hover text-center">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:TemplateField HeaderText="Name" SortExpression="Name">

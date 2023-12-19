@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" Title="Product List" MasterPageFile="~/Header.Master" AutoEventWireup="true" CodeBehind="ProductsList.aspx.cs" Inherits="Party_Project_ASP_ADO.ProductsList" %>
 
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" />
+    <asp:Button ID="btnAddProduct" runat="server" Text="Add Product" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" />
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="Pr_Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting">
+    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="Pr_Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" CssClass="table table-hover text-center">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="Pr_Id" HeaderText="Pr_Id" InsertVisible="False" ReadOnly="True" SortExpression="Pr_Id" />

@@ -85,16 +85,15 @@ namespace Party_Project_ASP_ADO
             finally { conn.Close(); }
         }
 
-        public void setProductsDropDown(string partyName)
+        public void setProductsDropDown(string partyId)
         {
             try
             {
-                string selectQuery = "select pr.Name, pr.Pr_Id from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id Left join Product pr on pr.Pr_Id = ap.Pr_Id where p.Name = '" + partyName + "'";
+                string selectQuery = "select pr.Name, pr.Pr_Id from Assign_Party ap Left join Party p on p.P_Id = ap.P_Id Left join Product pr on pr.Pr_Id = ap.Pr_Id where p.P_Id = '" + partyId + "'";
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(selectQuery, conn);
                 conn.Open();
                 SqlDataAdapter ad = new SqlDataAdapter(cm);
-
 
                 DataTable dataTable = new DataTable();
                 ad.Fill(dataTable);
@@ -148,19 +147,22 @@ namespace Party_Project_ASP_ADO
             //string productQuantity = (string.IsNullOrEmpty(txtBoxQuantity.Text.Trim()) && int.Parse(txtBoxQuantity.Text.Trim()) > 0) ? txtBoxQuantity.Text.Trim() : "0";
             try
             {
-                string productName = ddProducts.Text;
-                string partyName = ddParty.Text;
-                string productRate = txtBoxRate.Text.Trim();
-                if (string.IsNullOrEmpty(productRate) || int.Parse(productRate) < 0)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Valid Rate Value!!')", true);
-                }
-                string productQuantity = txtBoxQuantity.Text.Trim();
-                int total = int.Parse(productRate) * int.Parse(productQuantity);
+                int productId = int.Parse(ddProducts.Text);
+                int partyId = int.Parse(ddParty.Text);
+                int productRate = int.Parse(txtBoxRate.Text);
+                //if (string.IsNullOrEmpty(productRate) || int.Parse(productRate) < 0)
+                //{
+                //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please Enter Valid Rate Value!!')", true);
+                //}
+                int productQuantity = int.Parse(txtBoxQuantity.Text);
+                int total = productRate * productQuantity;
+                //int total = int.Parse(productRate * productQuantity);
                 setGrandTotal(total);
 
 
-                string insertQuery = "insert into invoice values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "')," + int.Parse(productRate) + ", " + int.Parse(productQuantity) + ", " + total + " )";
+                /*string insertQuery = "insert into invoice values((select P_Id from Party where Name = '" + partyName + "'), (select Pr_Id from Product where Name = '" + productName + "')," + int.Parse(productRate) + ", " + int.Parse(productQuantity) + ", " + total + " )";*/
+
+                string insertQuery = "insert into invoice values('" + partyId + "', '" + productId + "'," + productRate + ", " + productQuantity + ", " + total + " )";
                 conn = new SqlConnection("data source =.; database = PartyProduct; integrated security = SSPI");
                 SqlCommand cm = new SqlCommand(insertQuery, conn);
                 conn.Open();

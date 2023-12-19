@@ -24,22 +24,22 @@
         </tr>
         <tr>
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
-            <td class="auto-style17" style="text-align: left; vertical-align: middle">
+            <td class="auto-style17" style="vertical-align: middle">
                 <asp:Label ID="Label3" runat="server" Text="Party Name :"></asp:Label>
             </td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:DropDownList ID="ddPartyName" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="P_Id">
+                <asp:DropDownList ID="ddPartyName" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="P_Id" Width="250px" CssClass="form-control">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name], [P_Id] FROM [Party]"></asp:SqlDataSource>
             </td>
         </tr>
         <tr>
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
-            <td class="auto-style17" style="text-align: left; vertical-align: middle">
+            <td class="auto-style17" style="vertical-align: middle">
                 <asp:Label ID="Label4" runat="server" Text="Product Name :"></asp:Label>
             </td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:DropDownList ID="ddProductName" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Pr_Id">
+                <asp:DropDownList ID="ddProductName" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Pr_Id" Width="250px" CssClass="form-control">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:PartyProductConnectionString %>" SelectCommand="SELECT [Name], [Pr_Id] FROM [Product]"></asp:SqlDataSource>
             </td>
@@ -48,9 +48,9 @@
             <td class="auto-style16" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style17" style="text-align: left; vertical-align: middle"></td>
             <td class="auto-style18" style="text-align: left; vertical-align: middle">
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="60px" />
+                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-success" />
                 &nbsp;
-                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" Width="60px" />
+                <asp:Button ID="btnCancle" runat="server" OnClick="btnCancle_Click" Text="Cancle" CssClass="btn btn-danger" />
             </td>
         </tr>
         <tr>
